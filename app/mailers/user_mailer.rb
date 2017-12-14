@@ -13,14 +13,14 @@ class UserMailer < ApplicationMailer
       end
     end
 
-    if email.has_attachments?
-     email.attachments.each do |attachment|
-       page.attachments.create({
-         file: attachment,
-         description: email.subject
-       })
-     end
-    end
+    # if email.has_attachments?
+    #  email.attachments.each do |attachment|
+    #    page.attachments.create({
+    #      file: attachment,
+    #      description: email.subject
+    #    })
+    #  end
+    # end
 
     contents = { subject: email.subject, parsed_body: parsed_body, raw_body: raw_body }
     contents

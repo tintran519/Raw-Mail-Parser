@@ -1,0 +1,6 @@
+<h2>Raw Mail Parser</h2>
+
+<%= form_tag('/email') do -%>
+  <%= text_area_tag 'raw_email', 'Paste raw email format here', size: "125x30" %>
+  <div><%= submit_tag 'Convert' %></div>
+<% end -%>
