@@ -1,0 +1,10 @@
+<% flash.each do |k, v| %>
+   <div><strong><%= v %></strong></div>
+ <% end %>
+
+<h2>Raw Mail Parser</h2>
+
+<%= form_tag('/emails') do -%>
+  <%= text_area_tag 'raw_email', nil, placeholder: 'Paste raw email format here', size: "125x30" %>
+  <div><%= submit_tag 'Convert' %></div>
+<% end -%>

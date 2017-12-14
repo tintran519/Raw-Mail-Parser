@@ -1,0 +1,9 @@
+<h1>My List of Converted Emails</h1>
+
+<ul>
+  <% @emails.each do |email|  %>
+    <li><%= email.subject %> - <%= link_to "view", email %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Convert an email", new_email_path %>

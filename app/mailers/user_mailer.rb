@@ -1,26 +1,11 @@
 class UserMailer < ApplicationMailer
   def receive(email)
-    raw_body = email.body
-    parsed_body = ''
-
-    if email.body.multipart?
-      email.body.parts.each do |p|
-        if p.mime_type == "text/plain"
-          parsed_body = p.body
-        end
-      end
+    if email.body.present? and email.body.parts.any?
+      encoding = email.html_part.content_type_parameters['charset']
+      contents = { subject: email.subject, parsed_body: email.html_part.body.decoded.force_encoding(encoding).encode('UTF-8') }
+    elsif email.body.present? and email.body.parts.blank?
+      contents = { subject: email.subject, parsed_body: email.body.to_s }
     end
-
-    if email.has_attachments?
-     email.attachments.each do |attachment|
-       page.attachments.create({
-         file: attachment,
-         description: email.subject
-       })
-     end
-    end
-
-    contents = { subject: email.subject, body: parsed_body }
-    contents
+      contents
   end
 end
