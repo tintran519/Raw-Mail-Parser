@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20171214012926) do
   create_table "emails", force: :cascade do |t|
     t.string   "subject"
     t.string   "body"
-    t.string   "raw_body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

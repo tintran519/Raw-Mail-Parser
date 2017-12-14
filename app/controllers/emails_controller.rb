@@ -8,13 +8,11 @@ class EmailsController < ApplicationController
   end
 
   def new
-
   end
 
   def create
     email = UserMailer.receive(params[:raw_email])
-    @email = Email.create({ subject: email[:subject], body: email[:parsed_body], raw_body: email[:raw_body] })
-    p "blabhalh #{@email.inspect}"
+    @email = Email.create({ subject: email[:subject], body: email[:parsed_body] })
     redirect_to email_path(@email)
   end
 end

@@ -2,4 +2,5 @@
 <p><strong>Subject:</strong> <%= @email.subject %></p>
 <p><strong>Body:</strong> <%= @email.body.to_s.html_safe %></p>
 <br><hr>
-<p><strong>Raw:</strong> <%= @email.raw_body %></p>
+
+<%= link_to "View list of converted emails", emails_path %>
