@@ -1,3 +1,7 @@
+<% flash.each do |k, v| %>
+   <div><strong><%= v %></strong></div>
+ <% end %>
+
 <h2>Raw Mail Parser</h2>
 
 <%= form_tag('/emails') do -%>

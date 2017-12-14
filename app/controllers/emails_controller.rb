@@ -12,7 +12,11 @@ class EmailsController < ApplicationController
 
   def create
     email = UserMailer.receive(params[:raw_email])
-    @email = Email.create({ subject: email[:subject], body: email[:parsed_body] })
-    redirect_to email_path(@email)
+    if email == "N/A"
+      redirect_to new_email_path, notice: "Not a valid email format"
+    else
+      @email = Email.create({ subject: email[:subject], body: email[:parsed_body] })
+      redirect_to email_path(@email)
+    end
   end
 end
