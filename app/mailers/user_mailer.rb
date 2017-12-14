@@ -1,11 +1,13 @@
 class UserMailer < ApplicationMailer
   def receive(email)
-    raw_body = email.body
+    raw_body = email.body.parts
     parsed_body = ''
 
     if email.body.multipart?
       email.body.parts.each do |p|
-        if p.mime_type == "text/plain"
+        puts "BLAHBLAH #{p.mime_type}"
+        puts "BLAHBLAH2 #{p.body}"
+        if p.mime_type == "text/html"
           parsed_body = p.body
         end
       end
@@ -20,7 +22,7 @@ class UserMailer < ApplicationMailer
      end
     end
 
-    contents = { subject: email.subject, body: parsed_body }
+    contents = { subject: email.subject, parsed_body: parsed_body, raw_body: raw_body }
     contents
   end
 end
